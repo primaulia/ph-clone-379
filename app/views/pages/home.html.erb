@@ -1,9 +1,10 @@
 <h1>Awesome Products</h1>
-<%= link_to "Create Product", new_product_path %>
-<ul>
+<%= link_to "Create Product", new_product_path, class:"btn btn-lg btn-block" %>
+
+<ul class="my-3">
 <% @products.each do |product| %>
   <li class="product">
-    <%= product.name %> - <%= product.tagline %>
+    <%= link_to product.name, product %> - <%= product.tagline %>
   </li>  
 <% end %>  
 </ul>
