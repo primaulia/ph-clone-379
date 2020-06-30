@@ -1,2 +1,9 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Awesome Products</h1>
+<%= link_to "Create Product", new_product_path %>
+<ul>
+<% @products.each do |product| %>
+  <li class="product">
+    <%= product.name %> - <%= product.tagline %>
+  </li>  
+<% end %>  
+</ul>
