@@ -15,8 +15,10 @@ class ProductsTest < ApplicationSystemTestCase
 
   test "lets a signed in user create a new product" do
     login_as users(:george)
-    visit "/products/new"
-    # save_and_open_screenshot
+    visit root_path
+
+    click_on "Create Product"
+    save_and_open_screenshot
 
     fill_in "product_name", with: "Le Wagon"
     fill_in "product_tagline", with: "Change your life: Learn to code"
@@ -32,8 +34,15 @@ class ProductsTest < ApplicationSystemTestCase
 
   test "lets a signed in user to view one product" do 
     login_as users(:george)
-    visit "/products/1"
+    visit root_path
+
+    # pull out the instance of product with fixtures
+    skello = products(:skello)
+    click_on skello.name
+
+    # check if user is redirected once clicking the link
+    assert_equal product_path(skello), page.current_path
     assert_selector "h1", text: "Skello"
-    save_and_open_screenshot
+    # save_and_open_screenshot
   end
 end
