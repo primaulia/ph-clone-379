@@ -23,10 +23,17 @@ class ProductsTest < ApplicationSystemTestCase
     # save_and_open_screenshot
 
     click_on 'Create Product'
-    save_and_open_screenshot
+    # save_and_open_screenshot
 
     # Should be redirected to Home with new product
     assert_equal root_path, page.current_path
     assert_text "Change your life: Learn to code"
+  end
+
+  test "lets a signed in user to view one product" do 
+    login_as users(:george)
+    visit "/products/1"
+    assert_selector "h1", text: "Skello"
+    save_and_open_screenshot
   end
 end
