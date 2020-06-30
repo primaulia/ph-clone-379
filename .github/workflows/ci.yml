@@ -64,9 +64,10 @@ jobs:
       - name: Setup DB
         env:
           RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: postgres
         run: |
-          bundle exec rails db:create
-          bundle exec rails db:migrate
+          bundle exec rails db:setup
 
       - name: Run test
         env:
